@@ -30,7 +30,7 @@ function Label({ text, type }: { text: string; type: "feeling" | "fact" }) {
       ? "bg-[hsl(30,80%,90%)] text-[hsl(25,60%,40%)]"
       : "bg-[hsl(210,60%,90%)] text-[hsl(210,60%,34%)]";
   return (
-    <span className={`text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full inline-block ${styles}`}>
+    <span className={`text-[10px] font-medium tracking-widest uppercase px-3 py-1 rounded-full inline-block ${styles}`}>
       {text}
     </span>
   );
@@ -56,16 +56,13 @@ function CardHighlight({ children, center = false }: { children: React.ReactNode
 function Card1() {
   return (
     <div className="flex flex-col items-center gap-5 text-center">
-      {/* Ripple visual */}
-      <div className="relative w-16 h-16 flex items-center justify-center flex-shrink-0">
-        <div className="absolute inset-0 rounded-full bg-[hsl(242,52%,84%,0.35)]" style={{ transform: "scale(1.7)" }} />
-        <div className="absolute inset-0 rounded-full bg-[hsl(242,52%,84%,0.22)]" style={{ transform: "scale(2.3)" }} />
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[hsl(242,52%,88%)] to-[hsl(270,44%,84%)] flex items-center justify-center shadow-sm">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="hsl(242,52%,42%)" strokeWidth="1.8" />
-            <path d="M12 8v4M12 16h.01" stroke="hsl(242,52%,42%)" strokeWidth="1.8" strokeLinecap="round" />
-          </svg>
-        </div>
+      {/* Pause / slow-down visual: two soft vertical bars */}
+      <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(242,52%,94%)] to-[hsl(270,44%,92%)] shadow-sm flex-shrink-0">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+          {/* Two breathing bars = "slow down" */}
+          <rect x="12" y="10" width="8" height="28" rx="4" fill="hsl(242,52%,58%)" opacity="0.85"/>
+          <rect x="28" y="10" width="8" height="28" rx="4" fill="hsl(270,44%,60%)" opacity="0.75"/>
+        </svg>
       </div>
 
       <h2 className="card-heading">Let's slow this down.</h2>
@@ -86,14 +83,15 @@ function Card1() {
 function Card2() {
   return (
     <div className="flex flex-col gap-5">
-      {/* Feeling orb visual */}
+      {/* Feeling visual: heart with emotion waves */}
       <div className="flex items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="relative w-14 h-14 flex-shrink-0">
-            <div className="absolute inset-0 rounded-full bg-[hsl(270,44%,82%,0.4)]" style={{ transform: "scale(1.35)" }} />
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[hsl(270,44%,78%)] to-[hsl(242,52%,72%)] shadow-md" />
-          </div>
-          <span className="text-[10px] tracking-widest text-[hsl(242,52%,42%)] font-semibold uppercase">Feeling</span>
+        <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(270,44%,94%)] to-[hsl(30,80%,94%)] shadow-sm flex-shrink-0">
+          <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
+            {/* Heart shape */}
+            <path d="M24 38s-14-9.5-14-19a9 9 0 0118 0 9 9 0 0118 0c0 9.5-14 19-14 19z" fill="hsl(330,60%,72%)" opacity="0.85"/>
+            {/* Small waves below to represent feeling/sensation */}
+            <path d="M16 43 Q20 40 24 43 Q28 46 32 43" stroke="hsl(270,44%,60%)" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.7"/>
+          </svg>
         </div>
       </div>
 
@@ -117,11 +115,16 @@ function Card2() {
 function Card3() {
   return (
     <div className="flex flex-col gap-5">
-      {/* Stable circle visual */}
+      {/* Fact visual: magnifying glass / observable evidence */}
       <div className="flex items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[hsl(210,60%,62%)] to-[hsl(210,60%,52%)] shadow-md flex-shrink-0" />
-          <span className="text-[10px] tracking-widest text-[hsl(210,60%,34%)] font-semibold uppercase">Fact</span>
+        <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(210,60%,94%)] to-[hsl(210,60%,90%)] shadow-sm flex-shrink-0">
+          <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
+            {/* Magnifying glass */}
+            <circle cx="20" cy="20" r="11" stroke="hsl(210,60%,45%)" strokeWidth="2.5" fill="hsl(210,60%,92%)" />
+            <line x1="28.5" y1="28.5" x2="38" y2="38" stroke="hsl(210,60%,40%)" strokeWidth="3" strokeLinecap="round"/>
+            {/* Checkmark inside lens */}
+            <path d="M15 20l3.5 3.5L25 16" stroke="hsl(210,60%,45%)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </div>
 
@@ -138,6 +141,7 @@ function Card3() {
     </div>
   );
 }
+
 
 // ─── CARD 4 ───────────────────────────────────────────────────────────────────
 function Card4() {
@@ -203,7 +207,7 @@ function Card6() {
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-2xl p-4 flex flex-col gap-2 bg-gradient-to-b from-[hsl(30,80%,97%)] to-[hsl(30,80%,93%)] border border-[hsl(30,60%,88%)]">
           <Label text="Feeling" type="feeling" />
-          <p className="text-[0.82rem] leading-relaxed text-[hsl(25,45%,32%)] font-semibold mt-1">
+          <p className="text-[0.82rem] leading-relaxed text-[hsl(25,45%,32%)] mt-1">
             "It feels unsafe."
           </p>
         </div>
@@ -227,23 +231,18 @@ function Card7() {
     <div className="flex flex-col gap-5">
       <h2 className="card-heading text-center">What OCD does</h2>
 
-      {/* Two overlapping circles visual */}
-      <div className="flex justify-center items-center h-16">
-        <div className="relative w-32 h-14 flex items-center justify-center">
-          {/* Feeling circle (left) */}
-          <div
-            className="absolute w-14 h-14 rounded-full bg-[hsl(270,44%,76%)] opacity-75 flex items-center justify-center"
-            style={{ left: "8px" }}
-          >
-            <span className="text-[8px] text-[hsl(242,52%,28%)] font-semibold tracking-wide leading-tight text-center">Feeling</span>
-          </div>
-          {/* Fact circle (right) */}
-          <div
-            className="absolute w-14 h-14 rounded-full bg-[hsl(210,60%,68%)] opacity-75 flex items-center justify-center"
-            style={{ right: "8px" }}
-          >
-            <span className="text-[8px] text-[hsl(210,52%,24%)] font-semibold tracking-wide text-center">Fact</span>
-          </div>
+      {/* Visual: tangled knot / blending illustration */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(270,44%,94%)] to-[hsl(210,60%,93%)] shadow-sm flex-shrink-0">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+            {/* Two overlapping circles representing blended feeling/fact */}
+            <circle cx="18" cy="24" r="11" fill="hsl(270,44%,72%)" opacity="0.65"/>
+            <circle cx="30" cy="24" r="11" fill="hsl(210,60%,62%)" opacity="0.65"/>
+            {/* Overlap blend region hint */}
+            <path d="M24 15 Q30 24 24 33 Q18 24 24 15" fill="hsl(242,52%,68%)" opacity="0.4"/>
+            {/* Small X in center = confusion */}
+            <path d="M22 22l4 4M26 22l-4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.9"/>
+          </svg>
         </div>
       </div>
 
@@ -268,18 +267,23 @@ function Card8() {
     <div className="flex flex-col gap-5">
       <h2 className="card-heading text-center">A different response</h2>
 
-      {/* Separated circles with glow on Fact */}
-      <div className="flex justify-center items-center gap-8 h-16">
-        <div className="flex flex-col items-center gap-1">
-          <div className="w-12 h-12 rounded-full bg-[hsl(270,44%,78%)] opacity-70" />
-          <span className="text-[8px] text-[hsl(242,52%,38%)] font-semibold tracking-wide uppercase">Feeling</span>
-        </div>
-        <div className="flex flex-col items-center gap-1">
-          <div
-            className="w-12 h-12 rounded-full bg-[hsl(210,60%,60%)] opacity-85"
-            style={{ boxShadow: "0 0 20px 8px hsl(210,60%,70%,0.45)" }}
-          />
-          <span className="text-[8px] text-[hsl(210,52%,30%)] font-semibold tracking-wide uppercase">Fact</span>
+      {/* Visual: two separated circles, fact glowing = clarity */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(210,60%,94%)] to-[hsl(242,52%,94%)] shadow-sm flex-shrink-0">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+            {/* Feeling circle (faded, left) */}
+            <circle cx="14" cy="24" r="9" fill="hsl(270,44%,74%)" opacity="0.5"/>
+            <text x="14" y="27.5" textAnchor="middle" fontSize="5" fill="hsl(242,52%,32%)" fontFamily="Inter,sans-serif" opacity="0.8">feel</text>
+            {/* Gap arrow between them */}
+            <path d="M25 24h4" stroke="hsl(242,52%,60%)" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M27 21.5l2.5 2.5-2.5 2.5" stroke="hsl(242,52%,60%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Fact circle (bright, right, glowing) */}
+            <circle cx="37" cy="24" r="9" fill="hsl(210,60%,58%)" opacity="0.85" filter="url(#glow)"/>
+            <defs>
+              <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <text x="37" y="27.5" textAnchor="middle" fontSize="5" fill="white" fontFamily="Inter,sans-serif" opacity="0.95">fact</text>
+          </svg>
         </div>
       </div>
 
@@ -301,6 +305,7 @@ function Card8() {
     </div>
   );
 }
+
 
 // ─── COMPLETION ───────────────────────────────────────────────────────────────
 function Completion() {
