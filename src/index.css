@@ -1,105 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* =============================================
+   OCD MANTRA — Feeling vs Fact Design System
+   All colors MUST be HSL.
+   ============================================= */
 
 @layer base {
   :root {
+    /* Scene background */
+    --page-from: 270 44% 94%;   /* pale lavender #EEE9F7 */
+    --page-to:   210 60% 94%;   /* very light blue #E6F0FA */
+
+    /* Card surface */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 20% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 20% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 20% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Calm indigo as primary */
+    --primary: 242 52% 30%;        /* deep indigo */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 30% 96%;
+    --secondary-foreground: 242 52% 30%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 12% 52%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 270 44% 94%;
+    --accent-foreground: 242 52% 30%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 20% 90%;
+    --input: 240 20% 90%;
+    --ring: 242 52% 50%;
 
-    --radius: 0.5rem;
+    --radius: 20px;
+
+    /* Activity-specific tokens */
+    --feeling-tint: 30 80% 96%;      /* soft orange tint */
+    --feeling-orb: 30 90% 70%;
+    --fact-tint: 210 60% 96%;        /* cool blue tint */
+    --fact-orb: 210 70% 60%;
+    --indigo-glow: 242 52% 50%;
+    --completion-ring: 242 52% 70%;
+
+    /* Shadows */
+    --card-shadow: 0 8px 40px -8px hsl(242 52% 20% / 0.12);
+    --btn-glow: 0 0 20px hsl(242 52% 50% / 0.35);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  * { @apply border-border; }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   body {
-    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--page-from)) 0%,
+      hsl(var(--page-to)) 100%
+    );
+    min-height: 100vh;
+    color: hsl(var(--foreground));
   }
 }
+
+/* =============================================
+   KEYFRAME ANIMATIONS
+   ============================================= */
+@keyframes float-blob {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-30px) scale(1.04); }
+}
+@keyframes float-blob-2 {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  33%       { transform: translateY(-20px) translateX(15px) scale(1.02); }
+  66%       { transform: translateY(10px) translateX(-10px) scale(0.98); }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0.8); opacity: 0.4; }
+  50%  { transform: scale(1.15); opacity: 0.15; }
+  100% { transform: scale(0.8); opacity: 0.4; }
+}
+
+@keyframes pulse-orb {
+  0%, 100% { transform: scale(1);    opacity: 0.85; }
+  50%       { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes card-in {
+  0%   { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+
+@keyframes gentle-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-4px); }
+  40%       { transform: translateX(4px); }
+  60%       { transform: translateX(-3px); }
+  80%       { transform: translateX(2px); }
+}
+
+@keyframes blur-clear {
+  0%   { filter: blur(6px); opacity: 0.4; }
+  100% { filter: blur(0px); opacity: 1; }
+}
+
+@keyframes circles-separate {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-12px); }
+}
+@keyframes circles-separate-r {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(12px); }
+}
+
+@keyframes ring-expand {
+  0%   { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes check-pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes text-grow {
+  0%   { font-size: 0.9rem; opacity: 0.6; }
+  100% { font-size: 1.05rem; opacity: 1; }
+}
+
+/* =============================================
+   COMPONENT CLASSES
+   ============================================= */
+@layer components {
+  .card-heading {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: hsl(var(--primary));
+    line-height: 1.35;
+  }
+
+  .card-body {
+    font-size: 0.95rem;
+    color: hsl(240, 15%, 35%);
+    line-height: 1.8;
+  }
+
+  .card-note {
+    font-size: 0.82rem;
+    color: hsl(242, 30%, 52%);
+    font-style: italic;
+    padding: 0.6rem 1rem;
+    border-left: 2px solid hsl(242, 52%, 78%);
+  }
+
+  .card-highlight {
+    font-size: 0.88rem;
+    color: hsl(210, 45%, 36%);
+    background: hsl(210, 60%, 96%);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .activity-btn {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.75rem 2.2rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.15s ease;
+  }
+
+  .activity-btn:hover {
+    box-shadow: var(--btn-glow);
+    transform: translateY(-1px);
+  }
+
+  .activity-btn:active {
+    transform: translateY(0);
+  }
+}
+
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
+@layer utilities {
+  .animate-card-in  { animation: card-in  0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .animate-card-out { animation: card-out 0.3s ease-in forwards; }
+  .animate-ripple   { animation: ripple 3.5s ease-in-out infinite; }
+  .animate-pulse-orb { animation: pulse-orb 3s ease-in-out infinite; }
+  .animate-float-blob  { animation: float-blob   9s ease-in-out infinite; }
+  .animate-float-blob-2 { animation: float-blob-2 13s ease-in-out infinite; }
+  .animate-float-blob-3 { animation: float-blob  16s ease-in-out infinite reverse; }
+  .animate-gentle-shake { animation: gentle-shake 0.6s ease-out; }
+  .animate-blur-clear   { animation: blur-clear 0.5s ease-out forwards; }
+  .animate-ring-expand  { animation: ring-expand 1.4s ease-out forwards; }
+  .animate-check-pop    { animation: check-pop   0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+  .animate-fade-up      { animation: fade-up 0.6s ease-out forwards; }
+  .animate-circles-sep-l { animation: circles-separate   1.2s 0.8s ease-out forwards; }
+  .animate-circles-sep-r { animation: circles-separate-r 1.2s 0.8s ease-out forwards; }
+}
+
